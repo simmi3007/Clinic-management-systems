@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Consultation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Consult a Patient</h2>
+
+        <!-- Search Patient Section -->
+        <div class="form-group">
+            <label for="patientSearch">Search Patient by Name or ID:</label>
+            <input type="text" id="patientSearch" placeholder="Enter patient name or ID" oninput="searchPatient()">
+        </div>
+
+        <!-- Display Patient Details -->
+        <div class="form-group">
+            <label for="patientDetails">Patient Details:</label>
+            <textarea id="patientDetails" readonly placeholder="No patient selected"></textarea>
+        </div>
+
+        <!-- Consultation Notes Section -->
+        <div class="form-group">
+            <label for="consultationNotes">Consultation Notes:</label>
+            <textarea id="consultationNotes" placeholder="Enter your notes here..."></textarea>
+        </div>
+
+        <!-- Save Consultation -->
+        <button onclick="saveConsultation()">Save Consultation</button>
+
+        <!-- Success/Error Message -->
+        <p id="feedbackMessage" class="success-message"></p>
+    </div>
+
+    <script>
+        // Mock patient data
+        const patients = {
+            "123": { name: "Avni", age: 30, condition: "Flu, mild fever" },
+            "124": { name: "Prince", age: 40, condition: "High blood pressure" },
+            "125": { name: "Neil", age: 50, condition: "Diabetes Type 2" }
+        };
+
+        // Function to search and load patient details based on input
+        function searchPatient() {
+            const patientSearch = document.getElementById('patientSearch').value.trim();
+            const patientDetailsArea = document.getElementById('patientDetails');
+            const feedbackMessage = document.getElementById('feedbackMessage');
+            feedbackMessage.textContent = '';  // Clear feedback
+
+            if (patients[patientSearch]) {
+                const patient = patients[patientSearch];
+                patientDetailsArea.value = `Name: ${patient.name}\nAge: ${patient.age}\nCondition: ${patient.condition}`;
+            } else {
+                patientDetailsArea.value = 'No matching patient found.';
+            }
+        }
+
+        // Function to save consultation
+        function saveConsultation() {
+            const patientDetails = document.getElementById('patientDetails').value;
+            const consultationNotes = document.getElementById('consultationNotes').value.trim();
+            const feedbackMessage = document.getElementById('feedbackMessage');
+
+            if (!patientDetails || patientDetails === 'No matching patient found.') {
+                feedbackMessage.textContent = 'Please select a valid patient before saving.';
+                feedbackMessage.className = 'error-message';
+                return;
+            }
+
+            if (consultationNotes === '') {
+                feedbackMessage.textContent = 'Please enter consultation notes before saving.';
+                feedbackMessage.className = 'error-message';
+                return;
+            }
+
+            // In a real-world application, you would send this data to a backend server
+            console.log("Patient Details:", patientDetails);
+            console.log("Consultation Notes:", consultationNotes);
+
+            feedbackMessage.textContent = 'Consultation notes saved successfully!';
+            feedbackMessage.className = 'success-message';
+
+            // Clear the consultation notes field after saving
+            document.getElementById('consultationNotes').value = '';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Logout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            text-align: left;
+            display: inline-block;
+            color: white;
+        }
+
+        .navbar button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .navbar button:hover {
+            background-color: #c0392b;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .logout-message {
+            color: #e74c3c;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .signin-message {
+            color: #e74c3c;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .container button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <!--<h1>Doctor Dashboard</h1>-->
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <h2>Welcome, Doctor!</h2>
+        <p>Review patient data, prescribe medication, and more.</p>
+        <p><strong>Be sure to logout when you're done.</strong></p>
+        <p id="logoutMessage" class="logout-message"></p>
+        <button onclick="signin()" id="signinMessage" class="signin-message">signin</button>
+
+        <!-- Logout message will be displayed here -->
+<!--<p id="logoutMessage" class="logout-message"></p>-->
+    </div>
+
+    <script>
+        // Simulate logout functionality
+        function logout() {
+            // Simulate clearing the session (you could add real session management here)
+            alert("You have been logged out!");
+
+            // Clear any session or authentication tokens
+            // This can be done using JavaScript by clearing cookies or local storage
+            localStorage.removeItem('doctorSession'); // Example for localStorage
+            // Perform any other necessary cleanup actions here
+
+            // Redirect to login page or show confirmation message
+            document.getElementById('logoutMessage').textContent = "You have successfully logged out.";
+            
+            // Optionally redirect to login page (commented out)
+            // window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
