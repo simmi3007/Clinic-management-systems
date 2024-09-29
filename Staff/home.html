@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+            <!-- <div class="logo" style="border-radius: 20%"><img src="logo1.jpg" /> -->
+                <!-- <img src="logo1.png"> -->
+                    <p style="font-size:28px;">Medecro</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="doctor.html">Doctors</a></li>
+                <li><a href="patient.html">Patient</a></li>
+                <li><a href="ppoint.html">Appointment</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li class="emergency-tab"><a href="#" id="emergency-btn">Emergency</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1">ck</div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+
+        <div id="emergency-popup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Emergency Alert!</h2>
+                <p>Doctors have been notified of the emergency. Do you need further assistance?</p>
+                <button id="alert-btn">Send Immediate Alert</button>
+                <button id="close-popup">Close</button>
+            </div>
+        </div>
+    </header>
+    <!-- <div class="images">
+        <img src="C:\Users\dell\OneDrive\Desktop\Medecro\Staff\med.jpg">
+    </div> -->
+    <div class="description">
+        <div class="images">
+            <img src="med.jpg">
+        </div>
+        <div class="bg-img" >
+            <img src="bg.jpg">
+        </div>
+
+        
+        </div>
+       
+    <script src="home.js"></script>
+
+</body>
+</html>

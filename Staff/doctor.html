@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Schedule for Patients</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>View Doctor's Schedule</h2>
+
+        <label for="doctorSelect">Select Doctor:</label>
+        <select id="doctorSelect" onchange="showDoctorSchedule()">
+            <option value="">-- Select a Doctor --</option>
+            <option value="drSmith">Dr. Smith</option>
+            <option value="drJones">Dr. Jones</option>
+            <option value="drTaylor">Dr. Taylor</option>
+        </select>
+
+        <button onclick="showSchedule('monday')">Monday</button>
+        <button onclick="showSchedule('tuesday')">Tuesday</button>
+        <button onclick="showSchedule('wednesday')">Wednesday</button>
+        <button onclick="showSchedule('thursday')">Thursday</button>
+        <button onclick="showSchedule('friday')">Friday</button>
+
+        <table id="scheduleTable">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Activity</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleBody">
+                <!-- Schedule data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Schedule data for each doctor
+        const doctorSchedules = {
+            drSmith: {
+                monday: [
+                    { time: "9:00 AM - 10:00 AM", activity: "Consultation" },
+                    { time: "10:00 AM - 12:00 PM", activity: "Surgery" }
+                ],
+                tuesday: [
+                    { time: "9:00 AM - 11:00 AM", activity: "Consultation" },
+                    { time: "2:00 PM - 4:00 PM", activity: "Follow-ups" }
+                ]
+                // More days can be added similarly...
+            },
+            drJones: {
+                monday: [
+                    { time: "8:00 AM - 9:00 AM", activity: "Rounds" },
+                    { time: "10:00 AM - 1:00 PM", activity: "Surgery" }
+                ],
+                wednesday: [
+                    { time: "9:00 AM - 12:00 PM", activity: "Consultation" },
+                    { time: "1:00 PM - 4:00 PM", activity: "Meetings" }
+                ]
+                // More days can be added similarly...
+            },
+            drTaylor: {
+                thursday: [
+                    { time: "9:00 AM - 11:00 AM", activity: "Consultation" },
+                    { time: "11:30 AM - 1:00 PM", activity: "Administrative Work" }
+                ],
+                friday: [
+                    { time: "10:00 AM - 12:00 PM", activity: "Rounds" },
+                    { time: "2:00 PM - 5:00 PM", activity: "Consultation" }
+                ]
+                // More days can be added similarly...
+            }
+        };
+
+        // Variable to store the current doctor selected
+        let currentDoctor = '';
+
+        // Function to handle the doctor selection
+        function showDoctorSchedule() {
+            const select = document.getElementById('doctorSelect');
+            currentDoctor = select.value; // Update the selected doctor
+            document.getElementById('scheduleBody').innerHTML = ''; // Clear schedule
+        }
+
+        // Function to display the schedule for the selected doctor and day
+        function showSchedule(day) {
+            const scheduleBody = document.getElementById('scheduleBody');
+            scheduleBody.innerHTML = '';  // Clear previous schedule
+
+            // Check if a doctor has been selected
+            if (currentDoctor && doctorSchedules[currentDoctor][day]) {
+                doctorSchedules[currentDoctor][day].forEach(entry => {
+                    const row = document.createElement('tr');
+                    const timeCell = document.createElement('td');
+                    const activityCell = document.createElement('td');
+
+                    timeCell.textContent = entry.time;
+                    activityCell.textContent = entry.activity;
+
+                    row.appendChild(timeCell);
+                    row.appendChild(activityCell);
+                    scheduleBody.appendChild(row);
+                });
+            } else {
+                // If no doctor is selected or there's no schedule for the selected day
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.setAttribute('colspan', 2);
+                cell.textContent = "No schedule available.";
+                row.appendChild(cell);
+                scheduleBody.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>

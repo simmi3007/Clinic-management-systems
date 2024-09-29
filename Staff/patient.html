@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Interaction and Communication</title>
+    <link rel="stylesheet" href="patient.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Patient Interaction and Communication</h1>
+        <!-- Communication Tools Section -->
+        <section class="communication-section">
+            <h2>Send Communication to Patient</h2>
+            <form id="communication-form">
+                <label for="comm-method">Communication Method:</label>
+                <select id="comm-method">
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="sms">SMS</option>
+                </select>
+
+                <label for="patient-message">Message:</label>
+                <textarea id="patient-message" rows="4" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+            <h3>Communication Log</h3>
+            <ul id="communication-log">
+                <!-- Communication log will be listed here -->
+            </ul>
+        </section>
+
+        <!-- Patient Queries Section -->
+        <section class="queries-section">
+            <h2>Log Patient Query</h2>
+            <form id="query-form">
+                <label for="patient-query">Patient Query:</label>
+                <textarea id="patient-query" rows="3" required></textarea>
+
+                <button type="submit">Log Query</button>
+            </form>
+
+            <h3>Patient Queries</h3>
+            <ul id="query-list">
+                <!-- Queries will be listed here -->
+            </ul>
+        </section>
+    </div>
+
+    <script src="patient.js"></script>
+</body>
+</html>
